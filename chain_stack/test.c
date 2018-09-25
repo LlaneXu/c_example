@@ -2,7 +2,7 @@
 #include <string.h>
 #include <assert.h>
 #include <math.h>
-#include "../include/chain.h"
+#include "./include/stack.h"
 
 void test_chain(){
     P_node chain = chain_malloc();
@@ -47,4 +47,37 @@ void test_chain(){
     assert('a' == *(char*)(p_data));
 
     chain_free(chain);
+}
+
+void test_stack() {
+    int a = 1;
+    float b = 2.1;
+    double c = 3.2;
+    struct Student{
+        int id;
+        char name[16];
+        double score;
+    }d = {4, "Xiao Ming", 98.0};
+
+    Stack stack = stack_malloc();
+    stack_push(stack, (void*)&a);
+    stack_push(stack, (void*)&b);
+    stack_push(stack, (void*)&c);
+    stack_push(stack, (void*)&d);
+
+    void* temp;
+
+    temp = stack_pop(stack);
+    assert(fabs(((struct Student*)temp)->score - 98.0) < 1e-5);
+
+    temp = stack_pop(stack);
+    assert(fabs(*((double*)temp) - 3.2) < 1e-5);
+
+    temp = stack_pop(stack);
+    assert(fabs(*((float*)temp) - 2.1) < 1e-5);
+
+    temp = stack_pop(stack);
+    assert(1 == *((int*)temp));
+
+    stack_free(stack);
 }

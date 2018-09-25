@@ -1,6 +1,6 @@
 #include <mem.h>
 #include <malloc.h>
-#include "../include/chain.h"
+#include "chain.h"
 
 /***
  * 初始化链表。第一环不作数据存储使用。永远存在。防止链表指针丢失。
@@ -84,6 +84,7 @@ P_node chain_get_position(P_node p_chain, int position){
 }
 /***
  * 指定位置的后面增加一环
+ * 返回增加的这环链接
  * @param p_head
  * @param p_data
  * @param position

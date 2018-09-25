@@ -8,4 +8,4 @@ INCLUDE_DIRECTORIES(include)
 #source directory
 AUX_SOURCE_DIRECTORY(src DIR_SRCS)
 
-add_executable(chain_stack main.c ${DIR_SRCS})
+add_executable(chain_stack main.c test.c ${DIR_SRCS})
